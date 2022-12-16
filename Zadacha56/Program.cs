@@ -5,44 +5,42 @@
 //5 9 2 3
 //8 4 2 4
 //5 2 6 7
-//Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
-int n1, n2;
-int[,] A;
-
-Console.Write("Введите количество строк в матрице: ");
-n1 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите количество столбцов в матрице: ");
-n2 = Convert.ToInt32(Console.ReadLine());
-A = new int[n1, n2];
+int m;
+int n;
+int[,] mass2d;
+Console.Write("Введите кол-во строк в массиве: ");
+m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите кол-во столбцов в массиве: ");
+n = Convert.ToInt32(Console.ReadLine());
+mass2d = new int[m, n];
 Random rnd = new Random();
 
-// Присвоение значений датчиком случайных чисел
-for (int i = 0; i < n1; i++)
-    for (int j = 0; j < n2; j++)
-        A[i, j] = rnd.Next(-0, 10 + 1);
+for (int i = 0; i < m; i++)
+    for (int j = 0; j < n; j++)
+        mass2d[i, j] = rnd.Next(-10, 11);
 
-//Вывод массива
-for (int i = 0; i < n1; i++, Console.WriteLine())
-    for (int j = 0; j < n2; j++)
-        Console.Write(A[i, j] + "\t");
-int minRowSum = int.MaxValue, indexMinRow = 0;
+for (int i = 0; i < m; i++, Console.WriteLine())
+    for (int j = 0; j < n; j++)
+        Console.Write(mass2d[i, j] + "\t");
 
-for (int i = 0; i < n1; i++)
+int minSum = int.MaxValue;
+int index = 0;
+for (int i = 0; i < m; i++)
 {
     int rowSum = 0;
-    for (int j = 0; j < n2; j++)
-        rowSum += A[i, j];
+    for (int j = 0; j < n; j++)
+        rowSum += mass2d[i, j];
 
-    if (rowSum < minRowSum)
+    if (rowSum < minSum)
     {
-        minRowSum = rowSum;
-        indexMinRow = i;
+        minSum = rowSum;
+        index = i;
     }
 }
 
-Console.WriteLine("Строка с минимальной суммой элементов");
-for (int j = 0; j < n2; j++)
-    Console.Write(A[indexMinRow, j] + " ");
-    Console.WriteLine();
-    Console.WriteLine($"Сумма - {minRowSum}");
+Console.WriteLine("Строка с мин. суммой элементов: ");
+for (int j = 0; j < n; j++)
+    Console.Write(mass2d[index, j] + "\t");
+Console.WriteLine();
+Console.WriteLine($"Сумма этой строки:{minSum}");
