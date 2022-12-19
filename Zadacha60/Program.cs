@@ -27,4 +27,3 @@ for (int i = 0; i < m; i++)
     Console.WriteLine();
 }
 
-//58 и 62 задачи не сделал.
